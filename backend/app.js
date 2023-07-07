@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
-const connection = require('./connection.js')
+const mysql = require('mysql2/promise');
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -11,6 +11,27 @@ app.use(cors({
     origin: 'http://localhost:5173'
 }));
 
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    database: 'med_app'
+});
+
+
+app.get('/api/doctors', async (req, res) => {
+    try {
+      const [rows] = await pool.query(
+        `SELECT users.id as user_id, users.name, users.surname, doctors.speciality, doctors.localization
+        FROM users
+        JOIN doctors ON users.id = doctors.user_id`
+      );
+
+      res.json(rows);
+    } catch (error) {
+      console.error('Error fetching doctors:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
 
 app.post('/register', (req, res) => {
     const username = req.body.username;
