@@ -17,8 +17,7 @@ function App() {
               <Link to="/home">Strona główna</Link>
               <Link to="/login">Zaloguj</Link>
               <Link to="/register">Zarejestruj</Link>
-              <Link to="/doctor">Lekarz</Link>
-              <Link to="/opinions">Recenzje</Link>
+              <Link to="/doctor">Moje opinie</Link>
               <Link to="/user">Użytkownik</Link>
               <Link to="">Wyloguj</Link>
             </nav>
@@ -28,7 +27,6 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/doctor" element={<Register />} />
-              <Route path="/opinions" element={<Register />} />
               <Route path="/user" element={<Register />} />
             </Routes>
           </div>

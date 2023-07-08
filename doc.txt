@@ -1,0 +1,7 @@
+Strona główna - lista lekarzy z możliwością przejścia do opini na temat danego lekarza po kliknięciu go na liście. W widoku z opiniami będzie możliwość wystawienia opini.
+Moje opinie - panel widoczny tylko dla lekrza gdzie będzie widział opinie na jego temat  
+Użytkownik - panel użytkownika z jego danymi i opiniami które wystawił
+
+Zaloguj
+Zarejestruj
+Wyloguj
