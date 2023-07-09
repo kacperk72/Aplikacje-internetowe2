@@ -1,4 +1,24 @@
+* {
+  align-items: center;
+  text-align: center;
+}
+form {
+  width: 50%;
+  margin: 0 auto;
 
+}
+.registerForm {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.checkboxInput {
+  width: 20px;
+}
+.registerButton, .loginButton{
+  margin-top: 20px;
+}
 /* App.css */
 .app-header {
   background-color: #282c34;

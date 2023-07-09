@@ -33,40 +33,60 @@ app.get('/api/doctors', async (req, res) => {
     }
   });
 
-app.post('/register', (req, res) => {
+  app.post('/register', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-
-    connection.query('INSERT INTO users (login, password) VALUES (?, ?)', [username, password], function(error, results) {
-        if (error) {
-            console.log(error);
-            res.status(500).send('Server error');
+    const name = req.body.name;
+    const surname = req.body.surname;
+    const isDoctor = req.body.isDoctor;
+  
+    try {
+      await pool.query(
+        'INSERT INTO users (name, surname, login, password, isDoctor) VALUES (?, ?, ?, ?, ?)', 
+        [name, surname, username, password, isDoctor]
+      );
+      res.send('User registered successfully');
+    } catch (error) {
+      console.log(error);
+      res.status(500).send('Server error');
+    }
+  });
+app.post('/login', async (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+  
+    try {
+      const [results] = await pool.query('SELECT * FROM users WHERE login = ?', [username]);
+      if (results.length > 0) {
+        const user = results[0];
+        if(password == results[0].password) {
+            res.json({
+                message: 'Logged in successfully',
+                user: user
+              });
         } else {
-            res.send('User registered successfully');
+          res.send('Wrong username/password combination');
         }
-    });
+      } else {
+        res.send('User does not exist');
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).send('Server error');
+    }
 });
 
-app.post('/login', (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
 
-    connection.query('SELECT * FROM users WHERE login = ?', [username], function(error, results) {
-        if (error) {
-            console.log(error);
-            res.status(500).send('Server error');
-        } else {
-            if (results.length > 0) {
-                if(password == results[0].password) {
-                    res.send('Logged in successfully');
-                } else {
-                    res.send('Wrong username/password combination');
-                }
-            } else {
-                res.send('User does not exist');
-            }
-        }
-    });
+app.get('/reviews', async (req, res) => {
+    const userId = req.query.userId;
+  
+    try {
+      const [reviews] = await pool.query('SELECT * FROM comments WHERE user_id = ?', [userId]);
+      res.send(reviews);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send('Server error');
+    }
 });
 
 app.listen(3000, function() {

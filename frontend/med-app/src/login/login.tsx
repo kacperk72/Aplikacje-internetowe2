@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -14,7 +15,9 @@ function Login() {
         password
       });
 
-      alert(res.data);
+      Cookies.set('user', JSON.stringify(res.data.user));
+
+      alert('Logged in successfully');
       window.location.reload();
 
     } catch (error) {
@@ -24,22 +27,22 @@ function Login() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Login</h1>
+      <h1>Logowanie</h1>
       <input
         type="text"
-        placeholder="Username"
+        placeholder="Login"
         value={username}
         onChange={e => setUsername(e.target.value)}
         required
       />
       <input
         type="password"
-        placeholder="Password"
+        placeholder="Hasło"
         value={password}
         onChange={e => setPassword(e.target.value)}
         required
       />
-      <button type="submit">Login</button>
+      <button type="submit" className='loginButton'>Zaloguj</button>
     </form>
   );
 }
