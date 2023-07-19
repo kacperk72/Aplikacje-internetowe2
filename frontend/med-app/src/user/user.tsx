@@ -12,7 +12,7 @@ function UserPage() {
 
   const fetchReviews = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/reviews?userId=${user.id}`);
+      const response = await axios.get(`http://localhost:3000/api/reviews?userId=${user.id}`);
       setReviews(response.data);
     } catch (error) {
       console.error(error);

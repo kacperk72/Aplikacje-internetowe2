@@ -5,6 +5,7 @@ import Register from './register/register';
 import HomePage from './home/home';
 import logo from '././assets/medapp-logo.png';
 import UserPage from './user/user';
+import Doctor from "./doctor/doctor";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/doctor" element={<Register />} />
+              <Route path="/doctor/:id" element={<Doctor />} />
               <Route path="/user" element={<UserPage />} />
             </Routes>
           </div>
