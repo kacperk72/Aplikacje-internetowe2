@@ -48,6 +48,25 @@ app.get('/api/doctor/:id', async (req, res) => {
     }
 });
 
+app.get('/api/doctors/search', async (req, res) => {
+    const { query } = req.query;
+
+    try {
+        const [rows] = await pool.query(
+            `SELECT users.id as user_id, users.name, users.surname, doctors.speciality, doctors.localization
+            FROM users
+            JOIN doctors ON users.id = doctors.user_id
+            WHERE users.name LIKE ? OR users.surname LIKE ?`,
+            [`%${query}%`, `%${query}%`]
+        );
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching doctors:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
 app.get('/api/reviews/:doctorId', async (req, res) => {
     const { doctorId } = req.params;
     try {
