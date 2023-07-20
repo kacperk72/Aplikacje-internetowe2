@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import './doctor.css';
 
 const Doctor = () => {
-    const { id } = useParams(); // Pobranie id z parametrów URL
+    const { id } = useParams();
     const [doctor, setDoctor] = useState(null);
     const [reviews, setReviews] = useState([]);
 
@@ -41,9 +42,12 @@ const Doctor = () => {
             <p><strong>Lokalizacja:</strong> {doctor.localization}</p>
             <h2>Opinie:</h2>
             {reviews.map((review) => (
-                <div key={review.id}>
+                <div key={review.id} className="review-card">
+                    <div className="review-header">
+                        <h3>{review.author_name} {review.author_surname}</h3>
+                        <span className="review-mark">Ocena: {review.mark}</span>
+                    </div>
                     <p>{review.comment}</p>
-                    <p>Ocena: {review.mark}</p>
                 </div>
             ))}
         </div>

@@ -70,7 +70,12 @@ app.get('/api/doctors/search', async (req, res) => {
 app.get('/api/reviews/:doctorId', async (req, res) => {
     const { doctorId } = req.params;
     try {
-        const [reviews] = await pool.query('SELECT * FROM comments WHERE doctor_id = ?', [doctorId]);
+        const [reviews] = await pool.query(`
+            SELECT comments.*, users.name as author_name, users.surname as author_surname 
+            FROM comments 
+            JOIN users ON comments.user_id = users.id 
+            WHERE doctor_id = ?
+        `, [doctorId]);
         res.send(reviews);
     } catch (error) {
         console.error('Error fetching reviews:', error);
