@@ -40,6 +40,7 @@ const Doctor = () => {
             <h1>{doctor.name} {doctor.surname}</h1>
             <p><strong>Specjalność:</strong> {doctor.speciality}</p>
             <p><strong>Lokalizacja:</strong> {doctor.localization}</p>
+            <p><strong>Ocena:</strong> {doctor.avg_mark}</p>
             <h2>Opinie:</h2>
             {reviews.map((review) => (
                 <div key={review.id} className="review-card">

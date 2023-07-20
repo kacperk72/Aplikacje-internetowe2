@@ -31,14 +31,20 @@ app.get('/api/doctors', async (req, res) => {
 app.get('/api/doctor/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const [rows] = await pool.query(
+        const [[doctor]] = await pool.query(
             `SELECT users.id as user_id, users.name, users.surname, doctors.speciality, doctors.localization
-        FROM users
-        JOIN doctors ON users.id = doctors.user_id
-        WHERE users.id = ?`, [id]
+            FROM users
+            JOIN doctors ON users.id = doctors.user_id
+            WHERE users.id = ?`, [id]
         );
-        if(rows.length > 0) {
-            res.json(rows[0]);
+
+        const [[{ avg_mark }]] = await pool.query(
+            'SELECT AVG(mark) as avg_mark FROM comments WHERE doctor_id = ?', [id]
+        );
+
+        if(doctor) {
+            doctor.avg_mark = parseFloat(avg_mark).toFixed(2);
+            res.json(doctor);
         } else {
             res.status(404).send('Doctor not found');
         }
@@ -47,6 +53,7 @@ app.get('/api/doctor/:id', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
 
 app.get('/api/doctors/search', async (req, res) => {
     const { query } = req.query;
