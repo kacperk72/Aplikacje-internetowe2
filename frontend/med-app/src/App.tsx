@@ -6,8 +6,10 @@ import HomePage from './home/home';
 import logo from '././assets/medapp-logo.png';
 import UserPage from './user/user';
 import Doctor from "./doctor/doctor";
+import Cookies from "js-cookie";
 
 function App() {
+  const user = JSON.parse(Cookies.get('user') || '{}');
   return (
     <>
       <div>
@@ -17,13 +19,12 @@ function App() {
           <div>
             <nav className="nav">
               <Link to="/home">Strona główna</Link>
-              <Link to="/login">Zaloguj</Link>
+              {user.id ? <Link to="/user">Użytkownik</Link> : null}
+              {user.id && user.isDoctor ? <Link to="/doctor">Moje opinie</Link> : null}
               <Link to="/register">Zarejestruj</Link>
-              <Link to="/doctor">Moje opinie</Link>
-              <Link to="/user">Użytkownik</Link>
-              <Link to="">Wyloguj</Link>
+              <Link to="/login">Zaloguj</Link>
+              {user.id ? <Link to="">Wyloguj</Link> : null}
             </nav>
-
             <Routes>
               <Route path="/home" element={<HomePage />} />
               <Route path="/login" element={<Login />} />
