@@ -90,6 +90,24 @@ app.get('/api/reviews/:doctorId', async (req, res) => {
     }
 });
 
+app.get('/api/reviewsByUser/:userId', async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const [reviews] = await pool.query(`
+            SELECT comments.*, u.name as author_name, u.surname as author_surname,
+            d.name as doctor_name, d.surname as doctor_surname
+            FROM comments 
+            JOIN users u ON comments.user_id = u.id 
+            JOIN doctors ON comments.doctor_id = doctors.user_id
+            JOIN users d ON doctors.user_id = d.id
+            WHERE comments.user_id = ?
+        `, [userId]);
+        res.send(reviews);
+    } catch (error) {
+        console.error('Error fetching reviews:', error);
+        res.status(500).send('Server error');
+    }
+});
 
 app.post('/register', async (req, res) => {
     const username = req.body.username;
