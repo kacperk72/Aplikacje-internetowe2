@@ -109,6 +109,21 @@ app.get('/api/reviewsByUser/:userId', async (req, res) => {
     }
 });
 
+app.post('/api/reviews', async (req, res) => {
+    const { userId, doctorId, mark, comment } = req.body;
+    try {
+        await pool.query(
+            'INSERT INTO comments (doctor_id, user_id, comment, mark) VALUES (?, ?, ?, ?)',
+            [doctorId, userId, comment, mark]
+        );
+        res.send('Review submitted successfully');
+    } catch (error) {
+        console.error('Error submitting review:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+
 app.post('/register', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;

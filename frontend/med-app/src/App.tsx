@@ -26,6 +26,7 @@ function App() {
               {user.id ? <Link to="">Wyloguj</Link> : null}
             </nav>
             <Routes>
+              <Route path="/" element={<HomePage />} />
               <Route path="/home" element={<HomePage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
