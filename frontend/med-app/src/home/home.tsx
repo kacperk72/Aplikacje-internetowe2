@@ -27,7 +27,7 @@ const HomePage = () => {
 
     return (
         <div className="container">
-            <h1 className="title">Strona główna</h1>
+            <h1 className="title">Lista lekarzy:</h1>
             <div>
                 <input
                     type="text"

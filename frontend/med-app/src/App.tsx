@@ -20,7 +20,7 @@ function App() {
             <nav className="nav">
               <Link to="/home">Strona główna</Link>
               {user.id ? <Link to="/user">Użytkownik</Link> : null}
-              {user.id && user.isDoctor ? <Link to="/doctor">Moje opinie</Link> : null}
+              {user.id && user.isDoctor ? <Link to={`/doctor/${user.id}`}>Moje opinie</Link> : null}
               <Link to="/register">Zarejestruj</Link>
               <Link to="/login">Zaloguj</Link>
               {user.id ? <Link to="">Wyloguj</Link> : null}
@@ -29,7 +29,6 @@ function App() {
               <Route path="/home" element={<HomePage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/doctor" element={<Register />} />
               <Route path="/doctor/:id" element={<Doctor />} />
               <Route path="/user" element={<UserPage />} />
             </Routes>
