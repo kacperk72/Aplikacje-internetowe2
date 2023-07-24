@@ -17,8 +17,10 @@ function App() {
   return (
     <>
       <div>
-        <img src={logo} className="app-logo" alt="logo" />
-        <h1>Med App</h1>
+        <div className="app-header">
+          <h1>Med App</h1>
+          <img src={logo} className="app-logo" alt="logo" />
+        </div>
         <Router>
           <div>
             <nav className="nav">

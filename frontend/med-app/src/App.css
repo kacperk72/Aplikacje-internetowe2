@@ -1,35 +1,25 @@
+/* App.css */
+body {
+  margin: 0;
+  padding: 0;
+}
+
 * {
   align-items: center;
   text-align: center;
 }
-form {
-  width: 50%;
-  margin: 0 auto;
 
+.title_page {
+  font-size: 35px;
 }
-.registerForm {
-  width: 100%;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-.checkboxInput {
-  width: 20px;
-}
-.registerButton, .loginButton{
-  margin-top: 20px;
-}
-/* App.css */
+
 .app-header {
   background-color: #282c34;
-  height: 60px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   color: white;
-  padding: 0 20px;
-  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center
 }
 
 .app-logo {
@@ -46,9 +36,11 @@ form {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  background-color: #2c3138;
 }
 
 .nav a {
+  color: white;
   text-decoration: none;
   font-size: 20px;
   padding: 20px 5px;
@@ -57,4 +49,64 @@ form {
 
 .nav a:hover {
   color: #61dafb;
+}
+
+@media (max-width: 650px) {
+  .nav {
+    flex-direction: column;
+  }
+  .nav a {
+    margin: 0px;
+  }
+}
+
+
+/* Other */
+form {
+  width: 50%;
+  margin: 0 auto;
+
+}
+
+.registerForm {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.registerButton, .loginButton{
+  margin-top: 20px;
+}
+
+.checkboxInput {
+  width: 20px;
+}
+
+.container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-mark {
+  font-weight: bold;
+  color: green;
+}
+
+.review-comment{
+  text-align: left;
 }

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
-import './doctor.css';
 import Cookies from "js-cookie";
 
 
@@ -53,7 +52,7 @@ const ReviewForm = ({ doctorId }) => {
                 fullIcon={<i className="fa fa-star"></i>}
                 activeColor="#ffd700"
             />
-            <textarea value={comment} onChange={handleCommentChange} rows={5} style={{width: '100%'}}/>
+            <textarea className="review-comment" value={comment} onChange={handleCommentChange} rows={5} style={{width: '100%'}}/>
             <button type="submit">Submit</button>
         </form>
     );
@@ -95,21 +94,34 @@ const Doctor = () => {
 
     return (
         <div>
-            <h1>{doctor.name} {doctor.surname}</h1>
+            <h1 className="title_page">{doctor.name} {doctor.surname}</h1>
             <p><strong>Specjalność:</strong> {doctor.speciality}</p>
             <p><strong>Lokalizacja:</strong> {doctor.localization}</p>
             <p><strong>Ocena:</strong> {doctor.avg_mark}</p>
             { user.id && (user.id != doctor.user_id) ? <ReviewForm doctorId={doctor.user_id} /> : null }
-            <h2>Opinie:</h2>
-            {reviews.map((review) => (
-                <div key={review.id} className="review-card">
-                    <div className="review-header">
-                        <h3>{review.author_name} {review.author_surname}</h3>
-                        <span className="review-mark">Ocena: {review.mark}</span>
+            <div className="container">
+                <br/>
+                <h2>Opinie:</h2>
+                {reviews.map((review) => (
+                    <div key={review.id} className="card">
+                        <div className="review-header">
+                            <h3>{review.author_name} {review.author_surname}</h3>
+                            <ReactStars
+                                count={5}
+                                size={24}
+                                half={true}
+                                value={review.mark}
+                                emptyIcon={<i className="far fa-star"></i>}
+                                halfIcon={<i className="fa fa-star-half-alt"></i>}
+                                fullIcon={<i className="fa fa-star"></i>}
+                                activeColor="#ffd700"
+                                edit={false}
+                            />
+                        </div>
+                        <p className="review-comment">{review.comment}</p>
                     </div>
-                    <p>{review.comment}</p>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     );
 };

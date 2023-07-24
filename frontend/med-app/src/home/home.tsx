@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import './home.css';
 import {Link} from "react-router-dom";
 
 const HomePage = () => {
@@ -27,7 +26,7 @@ const HomePage = () => {
 
     return (
         <div className="container">
-            <h1 className="title">Lista lekarzy:</h1>
+            <h2 className="title_page">Lista lekarzy:</h2>
             <div>
                 <input
                     type="text"
@@ -36,7 +35,7 @@ const HomePage = () => {
                     placeholder="Wyszukaj lekarza"
                 />
                 {doctors.map((doctor: any) => (
-                    <div key={doctor.user_id} className="doctor-card">
+                    <div key={doctor.user_id} className="card">
                         <Link to={`../doctor/${doctor.user_id}`}>
                             <h2>{doctor.name} {doctor.surname}</h2>
                         </Link>

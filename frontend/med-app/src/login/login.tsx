@@ -27,7 +27,7 @@ function Login() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Logowanie</h1>
+      <h1 className="title_page">Logowanie</h1>
       <input
         type="text"
         placeholder="Login"

@@ -32,7 +32,7 @@ function Register() {
   return (
     <div className="registerForm">
       <form onSubmit={handleSubmit}>
-        <h1>Rejestracja</h1>
+        <h1 className="title_page">Rejestracja</h1>
         <input
           type="text"
           placeholder="Imie"
