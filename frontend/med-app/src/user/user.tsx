@@ -28,7 +28,7 @@ function UserPage() {
 
       <h2>Wystawione opinie:</h2>
       {reviews.length > 0 ? (
-          reviews.map((review) => (
+          reviews.map((review: any) => (
               <div key={review.id} className="review-card">
                   <div className="review-header">
                       <h3>{review.doctor_name} {review.doctor_surname}</h3>

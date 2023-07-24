@@ -1,15 +1,19 @@
-import './App.css'
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import Login from './login/login';
-import Register from './register/register';
-import HomePage from './home/home';
-import logo from '././assets/medapp-logo.png';
-import UserPage from './user/user';
+import "./App.css";
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import Login from "./login/login";
+import Register from "./register/register";
+import HomePage from "./home/home";
+import logo from "././assets/medapp-logo.png";
+import UserPage from "./user/user";
 import Doctor from "./doctor/doctor";
 import Cookies from "js-cookie";
 
 function App() {
-  const user = JSON.parse(Cookies.get('user') || '{}');
+  const user = JSON.parse(Cookies.get("user") || "{}");
+  const handleLogout = () => {
+    Cookies.remove("user");
+    window.location.reload();
+  };
   return (
     <>
       <div>
@@ -20,10 +24,16 @@ function App() {
             <nav className="nav">
               <Link to="/home">Strona główna</Link>
               {user.id ? <Link to="/user">Użytkownik</Link> : null}
-              {user.id && user.isDoctor ? <Link to={`/doctor/${user.id}`}>Moje opinie</Link> : null}
+              {user.id && user.isDoctor ? (
+                <Link to={`/doctor/${user.id}`}>Moje opinie</Link>
+              ) : null}
               <Link to="/register">Zarejestruj</Link>
               <Link to="/login">Zaloguj</Link>
-              {user.id ? <Link to="">Wyloguj</Link> : null}
+              {user.id ? (
+                <Link to="/" onClick={handleLogout}>
+                  Wyloguj
+                </Link>
+              ) : null}
             </nav>
             <Routes>
               <Route path="/" element={<HomePage />} />
@@ -37,7 +47,7 @@ function App() {
         </Router>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
