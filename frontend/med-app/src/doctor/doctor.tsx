@@ -58,7 +58,7 @@ const ReviewForm = ({ doctorId }) => {
 };
 
 
-const Doctor = () => {
+const DoctorPage = () => {
     const { id } = useParams();
     const [doctor, setDoctor] = useState(null);
     const [reviews, setReviews] = useState([]);
@@ -124,4 +124,4 @@ const Doctor = () => {
     );
 };
 
-export default Doctor;
+export default DoctorPage;

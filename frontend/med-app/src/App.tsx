@@ -5,7 +5,7 @@ import Login from "./login/login";
 import Register from "./register/register";
 import HomePage from "./home/home";
 import UserPage from "./user/user";
-import Doctor from "./doctor/doctor";
+import DoctorPage from "./doctor/doctor";
 import Cookies from "js-cookie";
 
 
@@ -43,7 +43,7 @@ function App() {
               <Route path="/home" element={<HomePage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/doctor/:id" element={<Doctor />} />
+              <Route path="/doctor/:id" element={<DoctorPage />} />
               <Route path="/user" element={<UserPage />} />
             </Routes>
           </div>
