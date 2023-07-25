@@ -1,12 +1,13 @@
 import "./App.css";
+import logo from "././assets/medapp-logo.png";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Login from "./login/login";
 import Register from "./register/register";
 import HomePage from "./home/home";
-import logo from "././assets/medapp-logo.png";
 import UserPage from "./user/user";
 import Doctor from "./doctor/doctor";
 import Cookies from "js-cookie";
+
 
 function App() {
   const user = JSON.parse(Cookies.get("user") || "{}");

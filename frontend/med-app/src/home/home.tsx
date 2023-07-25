@@ -20,8 +20,7 @@ const HomePage = () => {
     }, []);
 
     useEffect(() => {
-        const timeoutId = setTimeout(() => fetchDoctors(searchQuery), 500);
-        return () => clearTimeout(timeoutId);
+        fetchDoctors(searchQuery)
     }, [searchQuery]);
 
     return (

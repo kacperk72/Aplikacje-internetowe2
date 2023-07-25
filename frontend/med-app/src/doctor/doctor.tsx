@@ -7,7 +7,6 @@ import Cookies from "js-cookie";
 
 const user = JSON.parse(Cookies.get('user') || '{}');
 
-
 const ReviewForm = ({ doctorId }) => {
     const [rating, setRating] = useState(3);
     const [comment, setComment] = useState('');
@@ -57,7 +56,6 @@ const ReviewForm = ({ doctorId }) => {
         </form>
     );
 };
-
 
 
 const Doctor = () => {

@@ -1,12 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const cors = require("cors");
 const mysql = require("mysql2/promise");
+const cors = require("cors");
 
 app.use(bodyParser.json());
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
 const pool = mysql.createPool({
   host: "localhost",
@@ -74,6 +74,7 @@ app.get("/api/doctors/search", async (req, res) => {
   }
 });
 
+
 app.get("/api/reviews/:doctorId", async (req, res) => {
   const { doctorId } = req.params;
   try {
@@ -128,6 +129,7 @@ app.post("/api/reviews", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
 
 app.post("/register", async (req, res) => {
   const username = req.body.username;
