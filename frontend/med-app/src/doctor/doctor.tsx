@@ -5,6 +5,7 @@ import ReactStars from "react-rating-stars-component";
 import Cookies from "js-cookie";
 import doctor2 from "../assets/doctor2.jpg";
 import doctor1 from "../assets/doctor1.jpg";
+import "./doctor.css";
 
 const user = JSON.parse(Cookies.get("user") || "{}");
 
@@ -59,7 +60,9 @@ const ReviewForm = ({ doctorId }) => {
         rows={5}
         style={{ width: "100%" }}
       />
-      <button type="submit">Submit</button>
+      <button type="submit" className="submitbtn">
+        Submit
+      </button>
     </form>
   );
 };
@@ -102,45 +105,57 @@ const DoctorPage = () => {
 
   return (
     <div>
-      <h1 className="title_page">
-        {doctor.name} {doctor.surname}
-      </h1>
-      <p>
-        <strong>Specjalność:</strong> {doctor.speciality}
-      </p>
-      <p>
-        <strong>Lokalizacja:</strong> {doctor.localization}
-      </p>
-      <p>
-        <strong>Ocena:</strong> {doctor.avg_mark}
-      </p>
+      <div className="doctorDetailsContainer">
+        <div>
+          <img src={doctor2} className="doctorImg" alt="logo" />
+        </div>
+        <div className="doctorDetails">
+          <h1 className="title_page">
+            {doctor.name} {doctor.surname}
+          </h1>
+          <p>
+            <strong>Specjalność:</strong> {doctor.speciality}
+          </p>
+          <p>
+            <strong>Lokalizacja:</strong> {doctor.localization}
+          </p>
+          <p>
+            <strong>Ocena:</strong>{" "}
+            {isNaN(doctor.avg_mark) ? "--" : doctor.avg_mark}
+          </p>
+        </div>
+      </div>
       {user.id && user.id != doctor.user_id ? (
         <ReviewForm doctorId={doctor.user_id} />
       ) : null}
       <div className="container">
         <br />
         <h2>Opinie:</h2>
-        {reviews.map((review) => (
-          <div key={review.id} className="card">
-            <div className="review-header">
-              <h3>
-                {review.author_name} {review.author_surname}
-              </h3>
-              <ReactStars
-                count={5}
-                size={24}
-                half={true}
-                value={review.mark}
-                emptyIcon={<i className="far fa-star"></i>}
-                halfIcon={<i className="fa fa-star-half-alt"></i>}
-                fullIcon={<i className="fa fa-star"></i>}
-                activeColor="#ffd700"
-                edit={false}
-              />
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
+            <div key={review.id} className="card">
+              <div className="review-header">
+                <h3>
+                  {review.author_name} {review.author_surname}
+                </h3>
+                <ReactStars
+                  count={5}
+                  size={24}
+                  half={true}
+                  value={review.mark}
+                  emptyIcon={<i className="far fa-star"></i>}
+                  halfIcon={<i className="fa fa-star-half-alt"></i>}
+                  fullIcon={<i className="fa fa-star"></i>}
+                  activeColor="#ffd700"
+                  edit={false}
+                />
+              </div>
+              <p className="review-comment">{review.comment}</p>
             </div>
-            <p className="review-comment">{review.comment}</p>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>Brak opinii.</p>
+        )}
       </div>
     </div>
   );
