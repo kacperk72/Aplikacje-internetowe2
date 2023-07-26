@@ -3,8 +3,6 @@
   margin: 0 auto 10px auto;
   padding: 10px;
   width: 50%;
-  background-color: rgba(233, 233, 200, 0.404);
-  border-radius: 10px;
 }
 
 .review-header {
@@ -15,23 +13,7 @@
 
 .review-mark {
   font-weight: bold;
-  color: rgb(72, 177, 72);
-  font-size: 20px;
-}
-
-.doctorDetailsContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.doctorDetails {
-  padding: 0px 30px;
-  margin: 20px 0px;
-}
-
-.doctorImg {
-  height: 300px;
+  color: green;
 }
 
 @media screen and (max-width: 600px) {

@@ -1,11 +1,11 @@
 import "./App.css";
+import logo from "././assets/medapp-logo.png";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Login from "./login/login";
 import Register from "./register/register";
 import HomePage from "./home/home";
-import logo from "././assets/medapp-logo.png";
 import UserPage from "./user/user";
-import Doctor from "./doctor/doctor";
+import DoctorPage from "./doctor/doctor";
 import Cookies from "js-cookie";
 
 function App() {
@@ -17,11 +17,10 @@ function App() {
   return (
     <>
       <div>
-        <div className="logo">
-          <img src={logo} className="app-logo" alt="logo" />
+        <div className="app-header">
           <h1>Med App</h1>
+          <img src={logo} className="app-logo" alt="logo" />
         </div>
-
         <Router>
           <div>
             <nav className="nav">
@@ -43,7 +42,7 @@ function App() {
               <Route path="/home" element={<HomePage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/doctor/:id" element={<Doctor />} />
+              <Route path="/doctor/:id" element={<DoctorPage />} />
               <Route path="/user" element={<UserPage />} />
             </Routes>
           </div>
