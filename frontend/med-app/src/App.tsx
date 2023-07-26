@@ -17,8 +17,11 @@ function App() {
   return (
     <>
       <div>
-        <img src={logo} className="app-logo" alt="logo" />
-        <h1>Med App</h1>
+        <div className="logo">
+          <img src={logo} className="app-logo" alt="logo" />
+          <h1>Med App</h1>
+        </div>
+
         <Router>
           <div>
             <nav className="nav">
@@ -27,8 +30,8 @@ function App() {
               {user.id && user.isDoctor ? (
                 <Link to={`/doctor/${user.id}`}>Moje opinie</Link>
               ) : null}
-              <Link to="/register">Zarejestruj</Link>
-              <Link to="/login">Zaloguj</Link>
+              {!user.id ? <Link to="/register">Zarejestruj</Link> : null}
+              {!user.id ? <Link to="/login">Zaloguj</Link> : null}
               {user.id ? (
                 <Link to="/" onClick={handleLogout}>
                   Wyloguj

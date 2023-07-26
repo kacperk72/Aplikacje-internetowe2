@@ -5,7 +5,6 @@
 form {
   width: 50%;
   margin: 0 auto;
-
 }
 .registerForm {
   width: 100%;
@@ -16,7 +15,8 @@ form {
 .checkboxInput {
   width: 20px;
 }
-.registerButton, .loginButton{
+.registerButton,
+.loginButton {
   margin-top: 20px;
 }
 /* App.css */
@@ -33,7 +33,7 @@ form {
 }
 
 .app-logo {
-  height: 40px;
+  height: 90px;
 }
 
 .app-title {
@@ -51,10 +51,21 @@ form {
 .nav a {
   text-decoration: none;
   font-size: 20px;
-  padding: 20px 5px;
+  padding: 15px 15px;
   margin: 10px;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: rgb(233, 233, 200);
 }
 
 .nav a:hover {
   color: #61dafb;
+}
+
+.logo {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: center;
 }
