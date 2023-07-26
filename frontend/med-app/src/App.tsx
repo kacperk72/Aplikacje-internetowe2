@@ -12,14 +12,14 @@ function App() {
   const user = JSON.parse(Cookies.get("user") || "{}");
   const handleLogout = () => {
     Cookies.remove("user");
-    window.location.reload();
+    window.location.replace("/home");
   };
   return (
     <>
       <div>
         <div className="app-header">
-          <h1>Med App</h1>
           <img src={logo} className="app-logo" alt="logo" />
+          <h1>Med App</h1>
         </div>
         <Router>
           <div>

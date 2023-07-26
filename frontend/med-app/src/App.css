@@ -60,7 +60,6 @@ body {
   margin: 10px;
   border: 1px solid white;
   border-radius: 10px;
-  background-color: rgb(233, 233, 200);
 }
 
 .nav a:hover {
@@ -132,4 +131,10 @@ form {
 
 .review-comment {
   text-align: left;
+}
+
+.searchDoctor {
+  width: 50%;
+  text-align: left;
+  margin: 15px;
 }

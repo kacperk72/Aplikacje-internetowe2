@@ -16,6 +16,30 @@
   color: green;
 }
 
+.doctorDetailsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0px;
+}
+
+.doctorDetails {
+  padding: 0px 30px;
+  margin: 20px 0px;
+}
+
+.doctorImg {
+  height: 300px;
+}
+
+.submitbtn {
+  margin-top: 20px;
+}
+
+h2 {
+  margin: 0;
+}
+
 @media screen and (max-width: 600px) {
   .review-card {
     width: 100%;
