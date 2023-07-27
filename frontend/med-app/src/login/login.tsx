@@ -16,11 +16,14 @@ function Login() {
       });
 
       Cookies.set("user", JSON.stringify(res.data.user));
-
-      alert("Logged in successfully");
+      alert("Zalogowano prawidłowo");
       window.location.replace("/home");
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      if (error.response && error.response.status === 401) {
+        alert("Zły login lub hasło, spróbuj ponownie");
+      } else {
+        console.error(error);
+      }
     }
   };
 

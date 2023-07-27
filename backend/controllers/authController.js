@@ -45,21 +45,19 @@ async function loginUser(req, res) {
   const password = req.body.password;
 
   try {
-    const [results] = await pool.query("SELECT * FROM users WHERE login = ?", [
-      username,
-    ]);
+    const [results] = await pool.query(
+      "SELECT * FROM users WHERE login=? AND password=?",
+      [username, password]
+    );
+    console.log(results.length);
     if (results.length > 0) {
       const user = results[0];
-      if (password == user.password) {
-        res.json({
-          message: "Logged in successfully",
-          user: user,
-        });
-      } else {
-        res.send("Wrong username/password combination");
-      }
+      res.json({
+        message: "Zalogowano prawidłowo",
+        user: user,
+      });
     } else {
-      res.send("User does not exist");
+      res.status(401).send("Zły login lub hasło, spróbuj ponownie");
     }
   } catch (error) {
     console.log(error);
